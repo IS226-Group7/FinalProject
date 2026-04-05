@@ -1,0 +1,22 @@
+{
+    "name": "PHP & MySQL (Filament ITAM)",
+    "image": "mcr.microsoft.com/devcontainers/php:1-8.3-bullseye",
+    "features": {
+        "ghcr.io/devcontainers/features/mysql:1": {
+            "databaseName": "laravel"
+        },
+        "ghcr.io/devcontainers/features/node:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "onecentlin.laravel-blade",
+                "amiralizadeh9480.laravel-extra-intellisense",
+                "bmewburn.vscode-intelephense-client"
+            ]
+        }
+    },
+    "forwardPorts": [8000, 3306],
+    // This command installs the intl extension and sets up the app
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libicu-dev && sudo docker-php-ext-configure intl && sudo docker-php-ext-install intl && cp .env.example .env || true && composer install && php artisan key:generate"
+}
